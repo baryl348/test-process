@@ -1,0 +1,174 @@
+.back {
+    position: fixed;
+    background-color: #ebf2fb;
+    width: 100%;
+    height: calc(100% - 60px);
+    top: 60px;
+    overflow: auto;
+}
+.panel {
+    position: relative;
+    display: flex;
+    background-color: #ffffff;
+    margin: 22px 22px 22px 22px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    height: 252px;
+    min-width: 945px;
+    justify-content: space-between;
+}
+
+.items {
+    top: 32px;
+    margin-left: 24px;
+    height: 100%;
+    position: relative;
+    margin-right: 0px;
+}
+
+hr {
+    position: absolute;
+    left: 0%;
+    right: 1.82%;
+    top: 23.81%;
+    bottom: 76.19%;
+
+    border: 1px solid #d6dce9;
+}
+
+.name_panel {
+    position: absolute;
+    top: 30px;
+    transform: translate(0, -50%);
+
+    width: 98.18%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.item_end {
+    margin-right: 100px;
+}
+
+/*Контейнер для обновления*/
+.item_content_refresh {
+    position: relative;
+    top: 50%;
+    transform: translate(0, -50%);
+    display: flex;
+    width: 150px;
+}
+
+.btn {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    padding: 0;
+    height: 24px;
+    width: 24px;
+}
+.img_all {
+    position: absolute;
+}
+
+/*Надпись в обновленной картинке*/
+.number {
+    margin-left: 36px;
+    color: #535374;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+/*Контейнер для времени */
+.item_content_time {
+    position: relative;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.item_time_cred {
+    margin-left: 20px;
+    margin-bottom: 24px;
+    width: 186px;
+    display: flex;
+    color: #999999;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.item_time_credss {
+    position: absolute;
+    top: 50%;
+    margin-top: 20px;
+    margin-left: 35px;
+    font-size: 12px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+
+    color: #999999;
+}
+.time {
+    margin-left: 30px;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;
+    display: flex;
+    color: #535374;
+}
+
+.content_date {
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: left;
+}
+.dates span {
+    width: 125px;
+}
+
+.message_data {
+    font-size: 12px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+
+    color: #999999;
+}
+
+.datas {
+    font-size: 12px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+
+    color: #333333;
+}
+
+/* имя панели */
+.name_credit {
+    margin: 12px 0 0 24px;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+
+    color: #6879bb;
+}
+.name_process {
+    text-decoration: none;
+    margin: 18px 0px 0px 0px;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+
+    color: #6879bb;
+}
+
+.vector {
+    margin-left: 15.47px;
+    width: 6.59px;
+    height: 11.06px;
+}

@@ -1,0 +1,60 @@
+.wrapper {
+    position: absolute;
+    background-color: #ebf2fb;
+    width: 100%;
+    height: calc(100% - 60px);
+    left: 0px;
+    top: 60px;
+    h1 {
+        margin-left: 22px;
+        color: #404064;
+    }
+}
+.button_save {
+    position: absolute;
+    top: 40px;
+    right: 22px;
+    transform: translate(0, -50%);
+}
+.panel {
+    background-color: #ffffff;
+    margin: 0 22px 0 22px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    height: 288px;
+    min-width: 500px;
+    padding: 24px;
+}
+
+// TODO много повторяется стиль login_block
+
+.login_block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 600px;
+    max-width: 700px;
+    padding-bottom: 12px;
+    Login {
+        width: 158px;
+        height: 36px;
+        margin-bottom: 12px;
+        padding-right: 103px;
+    }
+    label {
+        // font-family: Open Sans;
+        // font-style: normal;
+        // font-weight: normal;
+        font-size: 14px;
+        // line-height: 19px;
+        padding-right: 103px;
+        color: #999999;
+    }
+}
+
+// .formSummaryError {
+//     border: red 1px solid;
+//     padding: 5px;
+//     color: red;
+// }

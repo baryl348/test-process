@@ -1,0 +1,106 @@
+body {
+    margin: 0;
+    font-family: "Open Sans", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 14px;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.login_input {
+    width: 180px;
+    height: 24px;
+    padding: 6px 136px 6px 12px;
+
+    border-radius: 4px;
+    line-height: 19px;
+    border: 1px solid #d6dce9;
+
+    color: #6879bb;
+
+    outline: none;
+
+    transition: all 0.3s;
+    &::placeholder {
+        color: #cccccc;
+    }
+    &:hover:focus {
+        border: 1px solid #415fd5;
+        color: #415fd5;
+    }
+}
+
+.button_submit {
+    height: 36px;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+    background: #ffce0c;
+
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 16px;
+    border: none;
+    color: #333333;
+
+    outline: none;
+    &:hover {
+        background: #ffd73b;
+        box-shadow: 0 1px 10px rgba(0, 0, 0, 0.12);
+    }
+    &:active {
+        background: #ffc40c;
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.12);
+    }
+}
+.button_a {
+    text-decoration: none;
+    line-height: 19px;
+    color: #3167ba;
+}
+
+::-webkit-scrollbar {
+    position: absolute;
+    width: 12px;
+    left: 1354px;
+    top: 16.27px;
+
+    background: #8b99c9;
+    border-radius: 20px;
+}
+::-webkit-scrollbar-button {
+    /* кнопки вверх и вниз */
+}
+::-webkit-scrollbar-track {
+}
+::-webkit-scrollbar-track-piece {
+    position: absolute;
+    width: 12px;
+    height: 768px;
+    left: 1354px;
+    top: 0px;
+
+    background: #afb9d7;
+    border-radius: 2px;
+}
+::-webkit-scrollbar-thumb {
+    position: absolute;
+    width: 12px;
+    height: 266.67px;
+    left: 1354px;
+    top: 16.27px;
+
+    background: #8b99c9;
+    border-radius: 20px;
+}
+::-webkit-scrollbar-corner {
+    background: #afb9d7;
+}
+::-webkit-resizer {
+    /* потом разобраться */
+}
