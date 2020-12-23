@@ -1,5 +1,4 @@
 import { BaseThunk } from './../redux-store';
-
 import {  stopSubmit } from "redux-form"
 import {auth, EditProfile} from "../../api/api"
 import {  InferActionsType } from "../redux-store"
@@ -12,6 +11,7 @@ const initialState = {
     firstName:null as string |null,
     secondName:null as string | null,
     isAuth:false as boolean,
+    isLoading:false as boolean
 }
 type ActionTypes = InferActionsType<typeof actions>
 const authReducer = (state=initialState,action:ActionTypes)=>{
@@ -30,18 +30,16 @@ export const actions = {
      setUserData : (id:number, firstName:string, secondName:string, email:string, isAuth:boolean) => ({
         type: 'SET_USER_DATA',
        payload:{id, firstName, secondName, email, isAuth}
-    })
+    } as const),
 }
 
 type ThunkType = BaseThunk<ActionTypes | ReturnType<typeof stopSubmit>>
 
 export const GetUser = ():ThunkType =>async(dispatch) =>{
-    console.log('heys')
     const UserData = await auth.me()
     if (UserData){
         const {id,firstName,secondName,email} = UserData.data.currentUser
         dispatch(actions.setUserData(id,firstName,secondName,email, true))
-        
     }
 }
 
@@ -72,7 +70,6 @@ export const EditUser = (id:number ,firstName:string,secondName:string,email:str
 }
 
     export const AuthRegistr =  (firstName:string,secondName:string,email:string,password:string):ThunkType => async (dispatch)=>{
-        console.log('hey')
         const registerData = await auth.registration(firstName,secondName,email,password)
           try{
             const token = registerData.data.signup

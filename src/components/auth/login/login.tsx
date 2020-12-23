@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { InjectedFormProps, reduxForm } from 'redux-form'
 import { createField, Input } from '../../../common/formControls'
 import { LoginValuesType } from '../../../container/login/login'
-import { required } from '../../../utils/validators-type'
+import { email, required } from '../../../utils/validators-type'
 import proceset from "../../../img/Vector (1).png";
 import style from './login.module.scss'
 import { NavLink } from 'react-router-dom'
@@ -10,11 +10,9 @@ import eye from '../../../img/glaz.png'
 import openEye from '../../../img/openEye.png'
 import warning from '../../../img/warning.svg'
 
-type ownPropsType = {
-    isAuth: boolean
-}
 
-const LoginForm: React.FC<InjectedFormProps<LoginValuesType, ownPropsType> & ownPropsType> = ({ handleSubmit, error, pristine, submitting, ...props }) => {
+
+const LoginForm: React.FC<InjectedFormProps<LoginValuesType>> = ({ handleSubmit, error, pristine, submitting, ...props }) => {
     const [visible, setVisible] = useState<boolean>(false)
     const [eyes, setEye] = useState<boolean>(false)
     const active = () => {
@@ -22,13 +20,15 @@ const LoginForm: React.FC<InjectedFormProps<LoginValuesType, ownPropsType> & own
         setEye(!eyes)
     }
 
+
+
     return <div className={style.wrapper}>  <div>
         <i className={style.item_processet}>
             <img src={proceset} alt="proceset" />
         </i>
     </div>  <div className={style.panel}>
             <form onSubmit={handleSubmit} className={style.login} >
-                <div className={style.login_block}>{createField('Имя пользователя', 'email', [required], Input, 'text')}
+                <div className={style.login_block}>{createField('Имя пользователя', 'email', [required, email], Input, 'text')}
                 </div>
                 <div className={style.login_block}>
                     <i>
@@ -58,6 +58,6 @@ const LoginForm: React.FC<InjectedFormProps<LoginValuesType, ownPropsType> & own
             </div>}
         </div>  </div>
 }
-export default reduxForm<LoginValuesType, ownPropsType>({ form: 'LoginForm' })(LoginForm)
+export default reduxForm<LoginValuesType>({ form: 'LoginForm' })(LoginForm)
 
 

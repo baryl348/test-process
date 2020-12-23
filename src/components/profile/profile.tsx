@@ -4,7 +4,6 @@ import { createField, Input } from '../../common/formControls'
 import { ProfileType } from '../../container/profile/profile'
 import { Header } from '../header/header'
 import style from './profile.module.scss'
-import { required } from '../../utils/validators-type'
 
 
 type ownProps = {
@@ -30,7 +29,6 @@ const ProfileForm: React.FC<InjectedFormProps<ProfileType, ownProps> & ownProps>
                                 <form
                                     onSubmit={handleSubmit}>
                                     <div className={style.login_block}>
-                                        {/* //TODO рефакторить начиная от этого field */}
                                         <label>Имя</label>
                                         {createField('Не задано', 'firstName', [], Input, 'text')}
                                     </div>
@@ -53,7 +51,7 @@ const ProfileForm: React.FC<InjectedFormProps<ProfileType, ownProps> & ownProps>
                                     <div className={style.button_save}>
                                         <button type="submit" className="button_submit" >
                                             Сохранить
-                        </button>
+                                    </button>
                                     </div>
                                     {error && <div className={style.formSummaryError}>
                                         {error}

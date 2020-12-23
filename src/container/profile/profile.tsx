@@ -21,8 +21,6 @@ type StateProps = {
     isAuth: boolean
 }
 
-// TODO зафиксить any type
-
 type DispatchType = {
     EditUser: (id: any, firstName: string, secondName: string, email: string, password: string) => void
     GetUser: () => void

@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 
 export type ValidatorsType = (value:string)=> string | undefined
 
@@ -6,13 +6,16 @@ export type ValidatorsType = (value:string)=> string | undefined
 
 export const required:ValidatorsType = (value) => {
     if (value) return undefined;
-    return "Field is required";
+    return "Поле обязательно для ввода";
 }
 
 export const maxLengthCreator = (maxLength:number):ValidatorsType => (value) => {
-    if (value.length > maxLength) return `Max length is ${maxLength} symbols`;
+    if (value.length > maxLength) return `Максимальное колличество ${maxLength} символов`;
     return undefined;
 }
 
-
+export const email:ValidatorsType = (value) =>
+    value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
+        ? 'Некорректный email'
+        : undefined
 

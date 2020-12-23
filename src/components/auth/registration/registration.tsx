@@ -1,20 +1,18 @@
 import React, { useState } from 'react'
-import { NavLink, Redirect } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { InjectedFormProps, reduxForm } from 'redux-form'
 import { createField, Input } from '../../../common/formControls'
 import { RegistrValues } from '../../../container/registration/registration'
-import { required } from '../../../utils/validators-type'
+import { email, maxLengthCreator, required } from '../../../utils/validators-type'
 import style from '../login/login.module.scss'
 import proceset from "../../../img/Vector (1).png";
 import eye from '../../../img/glaz.png'
 import openEye from '../../../img/openEye.png'
 
 
-type ownProps = {
-    isAuth: boolean
-}
 
-const RegistrationForm: React.FC<InjectedFormProps<RegistrValues, ownProps> & ownProps> = ({ handleSubmit, error, isAuth }) => {
+
+const RegistrationForm: React.FC<InjectedFormProps<RegistrValues>> = ({ handleSubmit, error }) => {
     const [visible, setVisible] = useState<boolean>(false)
     const [eyes, setEye] = useState<boolean>(false)
     const active = () => {
@@ -27,8 +25,7 @@ const RegistrationForm: React.FC<InjectedFormProps<RegistrValues, ownProps> & ow
         setRepeatVisible(!repeatVisible)
         setRepeatEye(!repeateyes)
     }
-
-    if (isAuth) return <Redirect to={'/Profile'} />
+    const maxLength30 = maxLengthCreator(30)
 
     return <div className={style.wrapper}>  <div>
         <i className={style.item_processet}>
@@ -43,7 +40,7 @@ const RegistrationForm: React.FC<InjectedFormProps<RegistrValues, ownProps> & ow
             <form onSubmit={handleSubmit} className={`${style.login} ${style.registration}`}>
                 <div className={style.login_block}>{createField('Имя', 'firstName', [required], Input, 'text')}</div>
                 <div className={style.login_block}>{createField('Фамилия', 'secondName', [required], Input, 'text')}</div>
-                <div className={style.login_block}>{createField('Электронная почта', 'email', [required], Input, 'text')}</div>
+                <div className={style.login_block}>{createField('Электронная почта', 'email', [required, email], Input, 'text')}</div>
                 <div className={style.login_block}>
                     <i>
                         <img
@@ -53,7 +50,7 @@ const RegistrationForm: React.FC<InjectedFormProps<RegistrValues, ownProps> & ow
                             className={style.passwordShown}
                         />
                     </i>
-                    {createField('Ввeдите пароль', 'password', [required], Input, visible ? "text" : "password")}</div>
+                    {createField('Ввeдите пароль', 'password', [required, maxLength30], Input, visible ? "text" : "password")}</div>
                 <div className={style.login_block}>
                     <i>
                         <img
@@ -63,7 +60,7 @@ const RegistrationForm: React.FC<InjectedFormProps<RegistrValues, ownProps> & ow
                             className={style.passwordShown}
                         />
                     </i>
-                    {createField('Повторите пароль', 'repeatPassword', [required], Input, repeatVisible ? "text" : "password")}
+                    {createField('Повторите пароль', 'repeatPassword', [required, maxLength30], Input, repeatVisible ? "text" : "password")}
                 </div>
                 <div className={style.login_block}> <button className="button_submit">
                     Применить и войти
@@ -80,4 +77,4 @@ const RegistrationForm: React.FC<InjectedFormProps<RegistrValues, ownProps> & ow
     </div>
 
 }
-export default reduxForm<RegistrValues, ownProps>({ form: 'registration' })(RegistrationForm)
+export default reduxForm<RegistrValues>({ form: 'registration' })(RegistrationForm)

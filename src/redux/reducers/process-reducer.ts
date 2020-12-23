@@ -6,15 +6,15 @@ import {ProcessApi} from "../../api/api";
 
 
 export type ProcessType = {
-    id: number ,
-    name: string ,
-    numberOfExecutions: number ,
-    averageLeadTime: string ,
-    averageActiveTime:  string ,
-    employeesInvolvedProcess: number ,
-    numberOfScenarios: number ,
-    start: string ,
-    end: string ,
+    id: number 
+    name: string 
+    numberOfExecutions: number 
+    averageLeadTime: string 
+    averageActiveTime:  string 
+    employeesInvolvedProcess: number 
+    numberOfScenarios: number 
+    start: string 
+    end: string 
     loading: string 
 }
 
@@ -28,7 +28,7 @@ const procesReducer = (state=initialState,action:ActionTypes) =>{
             case 'SET_PROCESS_LIST':
                 return{
                     ...state,
-                    process:[...action.process]
+                    process:[...action.payload]
                 }
                
             default:
@@ -38,7 +38,7 @@ const procesReducer = (state=initialState,action:ActionTypes) =>{
 export const actions ={
         setProcess : (process:[]) =>({
             type:'SET_PROCESS_LIST',
-            process:process
+            payload:process
         })
     }
 

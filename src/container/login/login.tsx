@@ -29,7 +29,7 @@ const Login: React.FC<StatePropsType & mapDispatch> = (props) => {
     props.GetUser()
     if (props.isAuth) return <Redirect to={'/Profile'} />
     console.log(props.isAuth)
-    return <div> <LoginForm onSubmit={onSubmit} isAuth={props.isAuth} />  </div>
+    return <div> <LoginForm onSubmit={onSubmit} />  </div>
 }
 
 const MapStateToProps = (state: AppStateType) => ({

@@ -13,12 +13,11 @@ type MapStateType = {
     process: Array<ProcessType>
     isAuth: boolean
 }
-// TODO зафиксить типы any
 type MapDispatchType = {
     GetProcess: () => any
     GetUser: () => void
 }
-// TODO fixed any type
+
 
 const Process: React.FC<MapStateType & MapDispatchType> = (props) => {
 

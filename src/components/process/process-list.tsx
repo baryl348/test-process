@@ -9,7 +9,6 @@ import scense from "../../img/Scense.png";
 import vector from "../../img/Vector (Stroke).png";
 import "moment/locale/ru"
 import moment from 'moment';
-import 'moment-duration-format'
 
 moment.locale('ru')
 
@@ -73,9 +72,6 @@ const ProcessList: React.FC<PropsType> = ({ id, name, numberOfExecutions, averag
                                 <img src={clock} alt="clock" />
 
                             </i>
-                            {/* {`${moment.duration(averageLeadTime, "hours").format('h [ч]')} ${moment.duration(averageLeadTime, 'minutes').format('m [мин]')}`} */}
-                            {/* ({(averageActiveTime/averageLeadTime*100).toFixed(1)}%) */}
-                            {/* ({(+ parsedAverageLeadTime / + parsedAverageActiveTime * 100).toFixed(1)}%) */}
                             <span className={style.time}>{`${moment.duration(averageLeadTime).hours()}ч ${moment.duration(averageLeadTime).minutes()}мин`}</span>
                             <div className={style.item_time_cred}>среднее время выполнения</div>
                         </div>

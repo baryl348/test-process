@@ -5,11 +5,11 @@ import NavBar from './navBar/navBar'
 
 
 
-export const Header: React.FC = ({}) => {
+export const Header: React.FC = () => {
     return (
         <header className={style.head}>
             <div className={style.head_menu}>
-                <NavBar  />
+                <NavBar />
             </div>
         </header>
     )
