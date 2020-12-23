@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { InjectedFormProps, reduxForm } from 'redux-form'
 import { createField, Input } from '../../../common/formControls'
 import { RegistrValues } from '../../../container/registration/registration'
-import { email, maxLengthCreator, required } from '../../../utils/validators-type'
+import { email, match, required } from '../../../utils/validators-type'
 import style from '../login/login.module.scss'
 import proceset from "../../../img/Vector (1).png";
 import eye from '../../../img/glaz.png'
@@ -25,7 +25,6 @@ const RegistrationForm: React.FC<InjectedFormProps<RegistrValues>> = ({ handleSu
         setRepeatVisible(!repeatVisible)
         setRepeatEye(!repeateyes)
     }
-    const maxLength30 = maxLengthCreator(30)
 
     return <div className={style.wrapper}>  <div>
         <i className={style.item_processet}>
@@ -50,7 +49,7 @@ const RegistrationForm: React.FC<InjectedFormProps<RegistrValues>> = ({ handleSu
                             className={style.passwordShown}
                         />
                     </i>
-                    {createField('Ввeдите пароль', 'password', [required, maxLength30], Input, visible ? "text" : "password")}</div>
+                    {createField('Ввeдите пароль', 'password', [required], Input, visible ? "text" : "password")}</div>
                 <div className={style.login_block}>
                     <i>
                         <img
@@ -60,7 +59,7 @@ const RegistrationForm: React.FC<InjectedFormProps<RegistrValues>> = ({ handleSu
                             className={style.passwordShown}
                         />
                     </i>
-                    {createField('Повторите пароль', 'repeatPassword', [required, maxLength30], Input, repeatVisible ? "text" : "password")}
+                    {createField('Повторите пароль', 'repeatPassword', [required, match('password')], Input, repeatVisible ? "text" : "password")}
                 </div>
                 <div className={style.login_block}> <button className="button_submit">
                     Применить и войти

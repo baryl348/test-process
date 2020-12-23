@@ -2,6 +2,7 @@ import React from 'react'
 import { InjectedFormProps, reduxForm } from 'redux-form'
 import { createField, Input } from '../../common/formControls'
 import { ProfileType } from '../../container/profile/profile'
+import { required } from '../../utils/validators-type'
 import { Header } from '../header/header'
 import style from './profile.module.scss'
 

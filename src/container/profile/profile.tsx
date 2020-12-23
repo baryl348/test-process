@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import ProfileForm from '../../components/profile/profile'
 import { AppStateType } from '../../redux/redux-store';
@@ -19,6 +19,7 @@ type StateProps = {
     secondName: string | null
     id: number | null
     isAuth: boolean
+    isLoading: boolean
 }
 
 type DispatchType = {
@@ -28,7 +29,10 @@ type DispatchType = {
 
 
 const Profile: React.FC<StateProps & DispatchType> = (props) => {
-    props.GetUser()
+
+    useEffect(() => {
+        props.GetUser()
+    })
     if (!props.isAuth) return <Redirect to={'/Login'} />
     const onSubmit = (formData: ProfileType) => {
         props.EditUser(props.id, formData.firstName, formData.secondName, formData.email, formData.password)
@@ -41,7 +45,8 @@ const MapStateToProps = (state: AppStateType) => ({
     firstName: state.auth.firstName,
     secondName: state.auth.secondName,
     id: state.auth.id,
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    isLoading: state.auth.isLoading
 })
 
 export default connect(MapStateToProps, { EditUser, GetUser })(Profile)

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { Header } from '../../components/header/header'
 import style from '../../components/process/process.module.scss'
@@ -12,6 +12,7 @@ import { GetUser } from '../../redux/reducers/auth-reducer'
 type MapStateType = {
     process: Array<ProcessType>
     isAuth: boolean
+    isLoading: boolean
 }
 type MapDispatchType = {
     GetProcess: () => any
@@ -31,7 +32,9 @@ const Process: React.FC<MapStateType & MapDispatchType> = (props) => {
         employeesInvolvedProcess={item.employeesInvolvedProcess} numberOfScenarios={item.numberOfScenarios}
         start={item.start} end={item.end} loading={item.loading} key={item.id} />
     )
-    props.GetUser()
+    useEffect(() => {
+        props.GetUser()
+    })
     if (!props.isAuth) return <Redirect to={'/Login'} />
     return (
         <div>
@@ -47,6 +50,7 @@ const Process: React.FC<MapStateType & MapDispatchType> = (props) => {
 }
 const MapStateToProps = (state: AppStateType) => ({
     process: state.process.process,
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    isLoading: state.auth.isLoading
 })
 export default connect(MapStateToProps, { GetProcess, GetUser })(Process)

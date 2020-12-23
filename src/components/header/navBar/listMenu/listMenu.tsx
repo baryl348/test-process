@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom';
 import Union from '../../../../img/Union.png'
 import style from '../navBar.module.scss'
@@ -52,7 +52,9 @@ type MapDispatchType = {
 }
 
 const ListMenu: React.FC<MapStateType & MapDispatchType> = ({ firstName, secondName, ...props }) => {
-    props.GetUser()
+    useEffect(() => {
+        props.GetUser()
+    })
     return <Menu firstName={firstName} secondName={secondName} />
 }
 const mapStateToProps = (state: AppStateType) => ({

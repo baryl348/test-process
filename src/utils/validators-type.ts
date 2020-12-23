@@ -19,3 +19,8 @@ export const email:ValidatorsType = (value) =>
         ? 'Некорректный email'
         : undefined
 
+        export const match:any = (matchName:string) => (value:string, allValues:any) =>
+  value !== allValues[matchName]
+    ? `Это поле должно совпадать с полем пароля`
+    : undefined
+

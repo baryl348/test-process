@@ -11,6 +11,10 @@ export const Header: React.FC = () => {
             <div className={style.head_menu}>
                 <NavBar />
             </div>
+            {/* Для удаления токена */}
+            {/* <div><button onClick={() => {
+                window.localStorage.removeItem('token')
+            }}>удалить токен</button></div> */}
         </header>
     )
 }

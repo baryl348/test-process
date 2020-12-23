@@ -11,11 +11,12 @@ const initialState = {
     firstName:null as string |null,
     secondName:null as string | null,
     isAuth:false as boolean,
-    isLoading:false as boolean
+    isLoading:true as boolean
 }
 type ActionTypes = InferActionsType<typeof actions>
 const authReducer = (state=initialState,action:ActionTypes)=>{
 switch(action.type){
+    case 'SET_LOADING':
 case  'SET_USER_DATA':return{
     ...state,
     ...action.payload
@@ -31,15 +32,25 @@ export const actions = {
         type: 'SET_USER_DATA',
        payload:{id, firstName, secondName, email, isAuth}
     } as const),
+    setLoading:(isLoading:boolean) =>({
+       type:'SET_LOADING',
+       payload:{isLoading}
+    } as const)
+
 }
 
 type ThunkType = BaseThunk<ActionTypes | ReturnType<typeof stopSubmit>>
 
 export const GetUser = ():ThunkType =>async(dispatch) =>{
-    const UserData = await auth.me()
-    if (UserData){
+    try{
+        const UserData = await auth.me()
+        if (UserData){
         const {id,firstName,secondName,email} = UserData.data.currentUser
         dispatch(actions.setUserData(id,firstName,secondName,email, true))
+    }}catch(error){
+        console.log(error)
+    }finally{
+        dispatch(actions.setLoading(false))
     }
 }
 
@@ -61,20 +72,21 @@ export const AuthLogin =  (email:string,password:string):ThunkType => async(disp
 export const EditUser = (id:number ,firstName:string,secondName:string,email:string,password:string):ThunkType => async (dispatch) =>{
     const UserData = await EditProfile.editMe(id,firstName,secondName,email,password)
     try{
-        dispatch(GetUser())
+        const {id, firstName, secondName, email}=UserData.data.editUser
+        dispatch(actions.setUserData(id,firstName,secondName,email,true))
+        // or used dispatch
+        // dispatch(GetUser())
     }catch(error){
         const message = UserData.errors.length > 0 ?  UserData.errors[0].message  : "Неизвестная ошибка";
          dispatch(stopSubmit("LoginForm",{_error:message}))
     }
-    
 }
 
     export const AuthRegistr =  (firstName:string,secondName:string,email:string,password:string):ThunkType => async (dispatch)=>{
         const registerData = await auth.registration(firstName,secondName,email,password)
-          try{
+        try{
             const token = registerData.data.signup
             window.localStorage.setItem('token',token)
-            dispatch(GetUser())
           }catch(error){
                const message = registerData.errors.length > 0 ? registerData.errors[0].message : 'Неизвестная ошибка'
               dispatch(stopSubmit('registration',{_error:message}))

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import './App.scss';
 import Login from './container/login/login';
 import Registration from './container/registration/registration';
 import Profile from './container/profile/profile'
@@ -26,12 +25,11 @@ const App: React.FC = (props) => {
         path="/Profile"
         render={() => <Profile />}
       />
-
-      {/* //TODO сделать компоненты process */}
       <Route
         path="/Process"
         render={() => <Process />}
       />
+      <Route path='*' render={() => <div>404 not found</div>} />
     </Switch>
   </div>
 }
