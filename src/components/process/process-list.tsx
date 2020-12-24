@@ -13,7 +13,7 @@ import moment from 'moment';
 moment.locale('ru')
 
 type PropsType = {
-    id: number,
+    id: string,
     name: string,
     numberOfExecutions: number,
     averageLeadTime: string

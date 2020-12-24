@@ -31,15 +31,15 @@ const ProfileForm: React.FC<InjectedFormProps<ProfileType, ownProps> & ownProps>
                                     onSubmit={handleSubmit}>
                                     <div className={style.login_block}>
                                         <label>Имя</label>
-                                        {createField('Не задано', 'firstName', [], Input, 'text')}
+                                        {createField('Не задано', 'firstName', [required], Input, 'text')}
                                     </div>
                                     <div className={style.login_block}>
                                         <label>Фамилия</label>
-                                        {createField('Не задано', 'secondName', [], Input, 'text')}
+                                        {createField('Не задано', 'secondName', [required], Input, 'text')}
                                     </div>
                                     <div className={style.login_block}>
                                         <label>Электронная почта</label>
-                                        {createField('Не задано', 'email', [], Input, 'text')}
+                                        {createField('Не задано', 'email', [required], Input, 'text')}
                                     </div>
                                     <div className={style.login_block}>
                                         <label>Новый пароль</label>

@@ -90,7 +90,7 @@ export const EditUser = (id:number ,firstName:string,secondName:string,email:str
           }catch(error){
                const message = registerData.errors.length > 0 ? registerData.errors[0].message : 'Неизвестная ошибка'
               dispatch(stopSubmit('registration',{_error:message}))
-          }
+          } 
            
     }
 

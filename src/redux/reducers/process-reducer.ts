@@ -6,7 +6,7 @@ import {ProcessApi} from "../../api/api";
 
 
 export type ProcessType = {
-    id: number 
+    id: string 
     name: string 
     numberOfExecutions: number 
     averageLeadTime: string 

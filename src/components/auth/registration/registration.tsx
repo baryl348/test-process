@@ -35,7 +35,6 @@ const RegistrationForm: React.FC<InjectedFormProps<RegistrValues>> = ({ handleSu
             <div className={style.text}>
                 <h1>Регистрация</h1>
             </div>
-            {/* // TODO Доделать класс у Н1 */}
             <form onSubmit={handleSubmit} className={`${style.login} ${style.registration}`}>
                 <div className={style.login_block}>{createField('Имя', 'firstName', [required], Input, 'text')}</div>
                 <div className={style.login_block}>{createField('Фамилия', 'secondName', [required], Input, 'text')}</div>

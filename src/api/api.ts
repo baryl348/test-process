@@ -25,7 +25,6 @@ export const auth = {
     return res.data
     },
     async registration(firstName:string,secondName:string,email:string,password:string){
-      console.log('hi')
       const res = await instanceNotAuth.post<ResponseType<RegistrationType>>(``,{query:`mutation{signup(firstName:"${firstName}",secondName:"${secondName}",email:"${email}",password:"${password}")}`})
       return res.data
     },
@@ -100,17 +99,5 @@ type ProfileEditType = {
   }
 }
 
- export type Process = {
-  id: string
-  name: string
-  numberOfExecutions: number
-  averageLeadTime: string
-  averageActiveTime: string
-  employeesInvolvedProcess: number
-  numberOfScenarios: number
-  start: string
-  end: string
-  loading: string
-}
 
 
