@@ -2,7 +2,7 @@ import React from 'react'
 import { InjectedFormProps, reduxForm } from 'redux-form'
 import { createField, Input } from '../../common/formControls'
 import { ProfileType } from '../../container/profile/profile'
-import { match, required } from '../../utils/validators-type'
+import { match, minLength, required } from '../../utils/validators-type'
 import { Header } from '../header/header'
 import style from './profile.module.scss'
 
@@ -44,11 +44,11 @@ const ProfileForm: React.FC<InjectedFormProps<ProfileType, ownProps> & ownProps>
                                     </div>
                                     <div className={style.login_block}>
                                         <label>Новый пароль</label>
-                                        {createField<ProfileValuesKeyType>('Не задано', 'password', [], Input, 'password')}
+                                        {createField<ProfileValuesKeyType>('Не задано', 'password', [minLength], Input, 'password')}
                                     </div>
                                     <div className={style.login_block}>
                                         <label className={style.panel_text}>Повторите пароль</label>
-                                        {createField('Не задано', 'repeatPassword', [match('password')], Input, 'password')}
+                                        {createField('Не задано', 'repeatPassword', [minLength, match('password')], Input, 'password')}
                                     </div>
                                     <div className={style.button_save}>
                                         <button type="submit" className="button_submit" >

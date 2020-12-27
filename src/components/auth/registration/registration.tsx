@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { InjectedFormProps, reduxForm } from 'redux-form'
 import { createField, Input } from '../../../common/formControls'
 import { RegistrValues } from '../../../container/registration/registration'
-import { email, required } from '../../../utils/validators-type'
+import { email, minLength, required } from '../../../utils/validators-type'
 import style from '../login/login.module.scss'
 import proceset from "../../../img/Vector (1).png";
 import eye from '../../../img/glaz.png'
@@ -14,7 +14,6 @@ import warning from '../../../img/warning.svg'
 type RegistrationValuesKeyType = Extract<keyof RegistrValues, string>
 
 const RegistrationForm: React.FC<InjectedFormProps<RegistrValues>> = ({ handleSubmit, error, ...props }) => {
-    console.log(error, 'error')
     const [visible, setVisible] = useState<boolean>(false)
     const [eyes, setEye] = useState<boolean>(false)
     const active = () => {
@@ -66,7 +65,7 @@ const RegistrationForm: React.FC<InjectedFormProps<RegistrValues>> = ({ handleSu
                             className={style.passwordShown}
                         />
                     </i>
-                    {createField('Повторите пароль', 'repeatPassword', [required], Input, repeatVisible ? "text" : "password")}
+                    {createField('Повторите пароль', 'repeatPassword', [required, minLength], Input, repeatVisible ? "text" : "password")}
                 </div>
                 <div className={style.login_block}> <button className="button_submit" type='submit' >
                     Применить и войти

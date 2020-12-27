@@ -84,7 +84,6 @@ export const EditUser = (id:number ,firstName:string,secondName:string,email:str
 
     export const AuthRegistr =  (firstName:string,secondName:string,email:string,password:string):ThunkType => async (dispatch)=>{
         const registerData = await auth.registration(firstName,secondName,email,password)
-        console.log(registerData)
             const token = registerData.data.signup
             if(token == null){
                 const message = registerData.errors.length > 0 ? registerData.errors[0].message : 'Неизвестная ошибка'

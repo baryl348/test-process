@@ -26,8 +26,6 @@
     padding: 24px;
 }
 
-// TODO много повторяется стиль login_block
-
 .login_block {
     display: flex;
     flex-direction: row;
@@ -43,18 +41,8 @@
         padding-right: 103px;
     }
     label {
-        // font-family: Open Sans;
-        // font-style: normal;
-        // font-weight: normal;
         font-size: 14px;
-        // line-height: 19px;
         padding-right: 103px;
         color: #999999;
     }
 }
-
-// .formSummaryError {
-//     border: red 1px solid;
-//     padding: 5px;
-//     color: red;
-// }

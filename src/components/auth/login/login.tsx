@@ -12,8 +12,7 @@ import warning from '../../../img/warning.svg'
 
 type LoginValuesKeyType = Extract<keyof LoginValuesType, string>
 
-const LoginForm: React.FC<InjectedFormProps<LoginValuesType>> = ({ handleSubmit, error, pristine, submitting, ...props }) => {
-    console.log(error, 'loginerror')
+const LoginForm: React.FC<InjectedFormProps<LoginValuesType>> = ({ handleSubmit, error, ...props }) => {
     const [visible, setVisible] = useState<boolean>(false)
     const [eyes, setEye] = useState<boolean>(false)
     const active = () => {
@@ -40,7 +39,7 @@ const LoginForm: React.FC<InjectedFormProps<LoginValuesType>> = ({ handleSubmit,
                     </i>
                     {createField<LoginValuesKeyType>('Пароль', 'password', [required], Input, visible ? "text" : "password")}
                 </div>
-                <div className={style.login_block}><button className="button_submit" type='submit' disabled={pristine || submitting} >Войти в систему</button>
+                <div className={style.login_block}><button className="button_submit" type='submit'  >Войти в систему</button>
                 </div>
                 <div className={style.login_block}>
                     <NavLink
