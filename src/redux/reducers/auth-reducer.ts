@@ -84,15 +84,16 @@ export const EditUser = (id:number ,firstName:string,secondName:string,email:str
 
     export const AuthRegistr =  (firstName:string,secondName:string,email:string,password:string):ThunkType => async (dispatch)=>{
         const registerData = await auth.registration(firstName,secondName,email,password)
-        try{
+        console.log(registerData)
             const token = registerData.data.signup
-            window.localStorage.setItem('token',token)
-          }catch(error){
-               const message = registerData.errors.length > 0 ? registerData.errors[0].message : 'Неизвестная ошибка'
-              dispatch(stopSubmit('registration',{_error:message}))
-          } 
-           
-    }
+            if(token == null){
+                const message = registerData.errors.length > 0 ? registerData.errors[0].message : 'Неизвестная ошибка'
+              dispatch(stopSubmit('Registration',{_error:message}))
+            }else{
+                window.localStorage.setItem('token',token)
+                window.location.reload()
+            }
+        }
 
 
 export default authReducer

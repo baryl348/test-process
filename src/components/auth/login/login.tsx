@@ -10,25 +10,24 @@ import eye from '../../../img/glaz.png'
 import openEye from '../../../img/openEye.png'
 import warning from '../../../img/warning.svg'
 
-
+type LoginValuesKeyType = Extract<keyof LoginValuesType, string>
 
 const LoginForm: React.FC<InjectedFormProps<LoginValuesType>> = ({ handleSubmit, error, pristine, submitting, ...props }) => {
+    console.log(error, 'loginerror')
     const [visible, setVisible] = useState<boolean>(false)
     const [eyes, setEye] = useState<boolean>(false)
     const active = () => {
         setVisible(!visible)
         setEye(!eyes)
     }
-
-
-
     return <div className={style.wrapper}>  <div>
         <i className={style.item_processet}>
             <img src={proceset} alt="proceset" />
         </i>
     </div>  <div className={style.panel}>
             <form onSubmit={handleSubmit} className={style.login} >
-                <div className={style.login_block}>{createField('Имя пользователя', 'email', [required, email], Input, 'text')}
+                <div className={style.login_block}>
+                    {createField<LoginValuesKeyType>('Имя пользователя', 'email', [required, email], Input, 'text')}
                 </div>
                 <div className={style.login_block}>
                     <i>
@@ -39,7 +38,7 @@ const LoginForm: React.FC<InjectedFormProps<LoginValuesType>> = ({ handleSubmit,
                             className={style.passwordShown}
                         />
                     </i>
-                    {createField('Пароль', 'password', [required], Input, visible ? "text" : "password")}
+                    {createField<LoginValuesKeyType>('Пароль', 'password', [required], Input, visible ? "text" : "password")}
                 </div>
                 <div className={style.login_block}><button className="button_submit" type='submit' disabled={pristine || submitting} >Войти в систему</button>
                 </div>

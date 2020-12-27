@@ -1,6 +1,6 @@
 
 import { Action, applyMiddleware, combineReducers, createStore } from "redux";
-import { ActionTypes, reducer as formReducer } from "redux-form";
+import {  reducer as formReducer } from "redux-form";
 import thunkMiddleware, { ThunkAction } from "redux-thunk";
 import authReducer from "./reducers/auth-reducer";
 import procesReducer from "./reducers/process-reducer";

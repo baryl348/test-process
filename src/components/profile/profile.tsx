@@ -2,7 +2,7 @@ import React from 'react'
 import { InjectedFormProps, reduxForm } from 'redux-form'
 import { createField, Input } from '../../common/formControls'
 import { ProfileType } from '../../container/profile/profile'
-import { required } from '../../utils/validators-type'
+import { match, required } from '../../utils/validators-type'
 import { Header } from '../header/header'
 import style from './profile.module.scss'
 
@@ -11,6 +11,7 @@ type ownProps = {
     secondName: string | null
     firstName: string | null
 }
+type ProfileValuesKeyType = Extract<keyof ProfileType, string>
 
 const ProfileForm: React.FC<InjectedFormProps<ProfileType, ownProps> & ownProps> = ({ handleSubmit, firstName, secondName, error, ...props }) => {
     return (
@@ -31,23 +32,23 @@ const ProfileForm: React.FC<InjectedFormProps<ProfileType, ownProps> & ownProps>
                                     onSubmit={handleSubmit}>
                                     <div className={style.login_block}>
                                         <label>Имя</label>
-                                        {createField('Не задано', 'firstName', [required], Input, 'text')}
+                                        {createField<ProfileValuesKeyType>('Не задано', 'firstName', [required], Input, 'text')}
                                     </div>
                                     <div className={style.login_block}>
                                         <label>Фамилия</label>
-                                        {createField('Не задано', 'secondName', [required], Input, 'text')}
+                                        {createField<ProfileValuesKeyType>('Не задано', 'secondName', [required], Input, 'text')}
                                     </div>
                                     <div className={style.login_block}>
                                         <label>Электронная почта</label>
-                                        {createField('Не задано', 'email', [required], Input, 'text')}
+                                        {createField<ProfileValuesKeyType>('Не задано', 'email', [required], Input, 'text')}
                                     </div>
                                     <div className={style.login_block}>
                                         <label>Новый пароль</label>
-                                        {createField('Не задано', 'password', [], Input, 'password')}
+                                        {createField<ProfileValuesKeyType>('Не задано', 'password', [], Input, 'password')}
                                     </div>
                                     <div className={style.login_block}>
                                         <label className={style.panel_text}>Повторите пароль</label>
-                                        {createField('Не задано', 'newPassword', [], Input, 'password')}
+                                        {createField('Не задано', 'repeatPassword', [match('password')], Input, 'password')}
                                     </div>
                                     <div className={style.button_save}>
                                         <button type="submit" className="button_submit" >

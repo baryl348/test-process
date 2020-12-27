@@ -32,7 +32,6 @@ const Registration: React.FC<MapStateType & MapDispatchType> = (props) => {
     useEffect(() => {
         props.GetUser()
     })
-
     if (props.isLoading) {
         return <Preloader />
     } else {

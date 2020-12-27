@@ -3,16 +3,18 @@ import { NavLink } from 'react-router-dom'
 import { InjectedFormProps, reduxForm } from 'redux-form'
 import { createField, Input } from '../../../common/formControls'
 import { RegistrValues } from '../../../container/registration/registration'
-import { email, match, required } from '../../../utils/validators-type'
+import { email, required } from '../../../utils/validators-type'
 import style from '../login/login.module.scss'
 import proceset from "../../../img/Vector (1).png";
 import eye from '../../../img/glaz.png'
 import openEye from '../../../img/openEye.png'
+import warning from '../../../img/warning.svg'
 
 
+type RegistrationValuesKeyType = Extract<keyof RegistrValues, string>
 
-
-const RegistrationForm: React.FC<InjectedFormProps<RegistrValues>> = ({ handleSubmit, error }) => {
+const RegistrationForm: React.FC<InjectedFormProps<RegistrValues>> = ({ handleSubmit, error, ...props }) => {
+    console.log(error, 'error')
     const [visible, setVisible] = useState<boolean>(false)
     const [eyes, setEye] = useState<boolean>(false)
     const active = () => {
@@ -36,9 +38,15 @@ const RegistrationForm: React.FC<InjectedFormProps<RegistrValues>> = ({ handleSu
                 <h1>Регистрация</h1>
             </div>
             <form onSubmit={handleSubmit} className={`${style.login} ${style.registration}`}>
-                <div className={style.login_block}>{createField('Имя', 'firstName', [required], Input, 'text')}</div>
-                <div className={style.login_block}>{createField('Фамилия', 'secondName', [required], Input, 'text')}</div>
-                <div className={style.login_block}>{createField('Электронная почта', 'email', [required, email], Input, 'text')}</div>
+                <div className={style.login_block}>
+                    {createField<RegistrationValuesKeyType>('Имя', 'firstName', [required], Input, 'text')}
+                </div>
+                <div className={style.login_block}>
+                    {createField<RegistrationValuesKeyType>('Фамилия', 'secondName', [required], Input, 'text')}
+                </div>
+                <div className={style.login_block}>
+                    {createField<RegistrationValuesKeyType>('Электронная почта', 'email', [required, email], Input, 'text')}
+                </div>
                 <div className={style.login_block}>
                     <i>
                         <img
@@ -48,7 +56,7 @@ const RegistrationForm: React.FC<InjectedFormProps<RegistrValues>> = ({ handleSu
                             className={style.passwordShown}
                         />
                     </i>
-                    {createField('Ввeдите пароль', 'password', [required], Input, visible ? "text" : "password")}</div>
+                    {createField<RegistrationValuesKeyType>('Ввeдите пароль', 'password', [required], Input, visible ? "text" : "password")}</div>
                 <div className={style.login_block}>
                     <i>
                         <img
@@ -58,9 +66,9 @@ const RegistrationForm: React.FC<InjectedFormProps<RegistrValues>> = ({ handleSu
                             className={style.passwordShown}
                         />
                     </i>
-                    {createField('Повторите пароль', 'repeatPassword', [required, match('password')], Input, repeatVisible ? "text" : "password")}
+                    {createField('Повторите пароль', 'repeatPassword', [required], Input, repeatVisible ? "text" : "password")}
                 </div>
-                <div className={style.login_block}> <button className="button_submit">
+                <div className={style.login_block}> <button className="button_submit" type='submit' >
                     Применить и войти
               </button></div>
                 <span>
@@ -69,10 +77,12 @@ const RegistrationForm: React.FC<InjectedFormProps<RegistrValues>> = ({ handleSu
                         Вход
               </NavLink>
                 </span>
-                {error && <div className={style.formSummaryError}>
-                    {error}</div>}
-            </form></div>
+            </form>
+            {error && <div className={`${style.formSummaryError} ${style.formSummaryErrorRegistration}`}>
+                <div><img src={warning} alt="warning" /></div> {error}
+            </div>}
+        </div>
     </div>
 
 }
-export default reduxForm<RegistrValues>({ form: 'registration' })(RegistrationForm)
+export default reduxForm<RegistrValues>({ form: 'Registration' })(RegistrationForm)

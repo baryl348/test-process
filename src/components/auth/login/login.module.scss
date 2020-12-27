@@ -33,10 +33,14 @@
     left: 50%;
     transform: translate(-50%);
     position: absolute;
-    padding-top: 36px;
+    padding-top: 34px;
     .login_block {
         position: relative;
-        padding-bottom: 12px;
+        padding-bottom: 14px;
+        button {
+            margin-top: 10px;
+            margin-bottom: 4px;
+        }
         img {
             cursor: pointer;
             padding: 10px;
@@ -84,11 +88,6 @@
         padding-left: 48px;
     }
 }
-
-// height: 96px;
-//     width: 424px;
-//     margin-top: 24px;
-//     background-color: #FFE9DB;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
+.formSummaryErrorRegistration {
+    margin-top: 381px;
+}
